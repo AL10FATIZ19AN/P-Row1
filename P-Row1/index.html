@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P-Row - Sistem Peminjaman Barang</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-boxes"></i> P-Row</h2>
+                <p>Sistem Peminjaman Barang</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item" data-section="pengajuan">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Pengajuan Peminjaman</span>
+                    </li>
+                    <li class="nav-item active" data-section="status">
+                        <i class="fas fa-list-check"></i>
+                        <span>Daftar Status Peminjaman</span>
+                    </li>
+                    <li class="nav-item" data-section="admin">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Daftar Admin</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1 id="page-title">Daftar Status Peminjaman</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Sections -->
+            <div class="content">
+                <!-- Pengajuan Peminjaman Section -->
+                <div id="pengajuan" class="section">
+                    <div class="form-container">
+                        <h3>Form Registrasi Peminjam Offline</h3>
+                        <form id="peminjaman-form">
+                            <div class="form-group">
+                                <label for="nama">Nama Lengkap *</label>
+                                <input type="text" id="nama" name="nama" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="barang">Barang yang Dipinjam *</label>
+                                <input type="text" id="barang" name="barang" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="keadaan">Keadaan Awal Barang *</label>
+                                <textarea id="keadaan" name="keadaan" rows="3" placeholder="Deskripsikan keadaan barang sebelum dipinjam..." required></textarea>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="tanggal-pinjam">Tanggal Mulai Pinjam *</label>
+                                    <input type="datetime-local" id="tanggal-pinjam" name="tanggal-pinjam" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="tanggal-kembali">Batas Pengembalian *</label>
+                                    <input type="datetime-local" id="tanggal-kembali" name="tanggal-kembali" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="telepon">Nomor Telepon *</label>
+                                <input type="tel" id="telepon" name="telepon" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="sosmed">Akun Media Sosial (Opsional)</label>
+                                <input type="text" id="sosmed" name="sosmed" placeholder="Instagram: @username atau Facebook: nama">
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Simpan Pengajuan
+                                </button>
+                                <button type="reset" class="btn btn-secondary">
+                                    <i class="fas fa-undo"></i> Reset
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Status Peminjaman Section -->
+                <div id="status" class="section active">
+                    <div class="status-container">
+                        <div class="status-header">
+                            <h3>Daftar Status Peminjaman</h3>
+                            <div class="filter-controls">
+                                <select id="status-filter" class="filter-select">
+                                    <option value="all">Semua Status</option>
+                                    <option value="dipinjam">Sedang Dipinjam</option>
+                                    <option value="dikembalikan">Telah Dikembalikan</option>
+                                    <option value="telat">Telat Pengembalian</option>
+                                </select>
+                                <button class="btn btn-primary" onclick="refreshData()">
+                                    <i class="fas fa-refresh"></i> Refresh
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="status-list" id="status-list">
+                            <!-- Status items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daftar Admin Section -->
+                <div id="admin" class="section">
+                    <div class="admin-container">
+                        <div class="admin-header">
+                            <h3>Daftar Anggota Admin</h3>
+                            <button class="btn btn-primary" onclick="addAdmin()">
+                                <i class="fas fa-plus"></i> Tambah Admin
+                            </button>
+                        </div>
+                        
+                        <div class="admin-list" id="admin-list">
+                            <!-- Admin items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
